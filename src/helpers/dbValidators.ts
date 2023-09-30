@@ -3,10 +3,10 @@ import { Animal } from "../entities"
 import { type_identificationNumber } from "../types/Animal.type"
 
 /**
- * The function checks if an identification number exists in the Animal repository and throws an error
- * if it doesn't.
- * @param {type_identificationNumber | number} identificationNumber - The `identificationNumber` parameter is a
- * variable of type `type_identificationNumber`. It is used to specify the identification number of an
+ * La función verifica si un número de identificación existe en la tabla de 'animal' de la base de dato
+ * y lanza un error si no existe.
+ * @param {type_identificationNumber | number} identificationNumber - El parámetro `identificationNumber` es una
+ * variable de tipo `type_identificationNumber` o `number`. Se utiliza para especificar el número de identificación de un
  * animal.
  */
 export const identificationNumberExists = async( identificationNumber: type_identificationNumber ) => {

@@ -9,6 +9,18 @@ export const getAnimals = (req: Request, res: Response) => {
   })
 }
 
+/**
+ * Esta función guarda un nuevo animal en una base de datos utilizando los datos proporcionados.
+ * @param {Request} req - El parámetro `req` es un objeto que representa la solicitud HTTP hecha al
+ * servidor. Contiene información como los encabezados de la solicitud, el cuerpo de la solicitud, el método de la solicitud,
+ * la URL de la solicitud, etc.
+ * @param {Response} res - El parámetro `res` es el objeto de respuesta que se utiliza para enviar una respuesta
+ * de vuelta al cliente. Contiene métodos y propiedades que le permiten controlar la respuesta, como establecer el
+ * código de estado, los encabezados y enviar el cuerpo de la respuesta.
+ * @returns una respuesta JSON con un mensaje de éxito y los datos del animal guardado si el animal se
+ * guarda correctamente. Si hay un error, devuelve una respuesta JSON con un mensaje de error y los
+ * detalles del error.
+ */
 export const postAnimals = async(req: Request, res: Response) => {
   const bodyData = req.body
   const { animalType, identificationNumber, race, birthdate, weight, imagenUrl } = bodyData
@@ -25,13 +37,13 @@ export const postAnimals = async(req: Request, res: Response) => {
 
     const response = await AppDataSource.manager.save(animal)
 
-    res.status(201).json({
+    return res.status(201).json({
       message: "Se ha guardado correctamente un nuevo animal",
       animal: response,
     })
 
   } catch (error) {
-    res.status(400).json({
+    return res.status(400).json({
       message: "Ha ocurrido un error al guardar el animal",
       error: error
     })

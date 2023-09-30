@@ -1,10 +1,9 @@
 /**
- * The function `isValidDateFormat` checks if a given string follows the format YYYY-MM-DD and returns
- * a boolean value indicating its validity.
- * @param {string} dateString - The `dateString` parameter is a string that represents a date in the
- * format "YYYY-MM-DD".
- * @returns a boolean value indicating whether the provided dateString is in the valid format of
- * YYYY-MM-DD.
+ * La función `isValidDateFormat` verifica si una cadena dada sigue el formato AAAA-MM-DD y devuelve
+ * un valor booleano que indica su validez.
+ * @param {string} dateString - El parámetro `dateString` es una cadena que representa una fecha en el
+ * formato "AAAA-MM-DD".
+ * @returns un valor booleano que indica si la `dateString` proporcionada está en el formato válido AAAA-MM-DD.
  */
 export const isValidDateFormat = (dateString: string): boolean => {
     // Expresión regular para validar el formato YYYY-MM-DD

@@ -19,7 +19,7 @@ router.post('/', [
   body('identificationNumber', "El numero de identificacion del animal ya existe").custom((idNumber: type_identificationNumber) => identificationNumberExists(idNumber)),
   body("race", "La raza del animal es requerida").notEmpty().isString(),
   body("birthdate", "La edad del animal es requerida").notEmpty(),
-  body("birthdate", "La edad del animal no es valida").custom((date) => isValidDateFormat(date)),
+  body("birthdate", "La edad del animal no es valida").custom((date:string) => isValidDateFormat(date)),
   body("weight", "El peso del animal es requerido").notEmpty().isNumeric(),
   body("weight", "El peso del animal no es valido").isFloat({ min: 0 }),
   body("imagenUrl", "La imagen del animal es requerida").notEmpty().isString(),
