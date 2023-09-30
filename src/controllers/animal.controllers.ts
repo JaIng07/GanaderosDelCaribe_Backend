@@ -80,3 +80,39 @@ export const postAnimals = async (req: Request, res: Response) => {
   }
 
 }
+
+/**
+ * Esta función elimina un animal de la base de datos basándose en su ID y devuelve un mensaje de éxito si
+ * la eliminación se realiza correctamente, o un mensaje de error si falla.
+ * @param {Request} req - El parámetro `req` es un objeto que representa la solicitud HTTP hecha al
+ * servidor. Contiene información como el método de la solicitud, encabezados, parámetros de consulta y cuerpo de la solicitud.
+ * @param {Response} res - El parámetro `res` es el objeto de respuesta que se utiliza para enviar la respuesta
+ * HTTP de vuelta al cliente. Contiene métodos y propiedades que le permiten establecer el código de estado de la
+ * respuesta, los encabezados y el cuerpo de la respuesta. En este fragmento de código, se utiliza para enviar una
+ * respuesta JSON con un mensaje de éxito o un
+ * @returns una respuesta JSON con un mensaje de éxito si el animal se elimina correctamente, o un mensaje de error
+ * si hay un error durante el proceso de eliminación.
+ */
+export const deleteAnimal = async (req: Request, res: Response) => {
+  const id = req.params.id
+
+  try {
+
+    const animalRepository = await AppDataSource.getRepository(Animal)
+    const animalToRemove = await animalRepository.findOneBy({ id: id })
+
+    if (animalToRemove) await animalRepository.remove(animalToRemove)
+
+    return res.status(200).json({
+      message: "Se ha eliminado correctamente el animal",
+    })
+
+  } catch (error) {
+    return res.status(400).json({
+      message: "Ha ocurrido un error al eliminar el animal",
+      error: error,
+      id
+    })
+  }
+
+}
