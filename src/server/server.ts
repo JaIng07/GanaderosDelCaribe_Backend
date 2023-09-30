@@ -1,13 +1,14 @@
 import express from "express";
 import cors from "cors";
 
+import animalRoutes from "../routes/animal.routes"
 
 class Server {
   port: string | undefined
   app: any
 
   constructor() {
-    this.port = process.env.PORT;
+    this.port = process.env.PORT || '8080';
     this.app = express()
     this.databaseInitialize()
     this.middlewares()
@@ -26,6 +27,7 @@ class Server {
 
   routes() {
     // aca se van a definir las rutas
+    this.app.use('/api/animal', animalRoutes)
   }
 
   listen() {
@@ -36,6 +38,5 @@ class Server {
   }
 
 }
-
 
 export default Server
