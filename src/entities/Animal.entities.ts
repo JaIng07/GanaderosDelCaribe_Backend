@@ -15,7 +15,7 @@ export class Animal {
     @Column()
     race: string
 
-    @Column({ type: "date" })
+    @Column({ type: "date"})
     age: Date
 
     @Column()
