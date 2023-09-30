@@ -11,7 +11,7 @@ export const getAnimals = (req: Request, res: Response) => {
 
 export const postAnimals = async(req: Request, res: Response) => {
   const bodyData = req.body
-  const { animalType, identificationNumber, race, age, weight, imagenUrl } = bodyData
+  const { animalType, identificationNumber, race, birthdate, weight, imagenUrl } = bodyData
 
   try {
 
@@ -19,7 +19,7 @@ export const postAnimals = async(req: Request, res: Response) => {
     animal.animalType = animalType
     animal.identificationNumber = identificationNumber
     animal.race = race
-    animal.age = age // NOTA: LA FECHA DEBE SER PASADA DE LA SIGUEINTE FORMA 2020-01-01 - YYYY-MM-DD
+    animal.birthdate = birthdate // NOTA: LA FECHA DEBE SER PASADA DE LA SIGUEINTE FORMA 2020-01-01 - YYYY-MM-DD
     animal.weight = weight
     animal.imagenUrl = imagenUrl
 

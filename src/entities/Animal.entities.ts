@@ -5,7 +5,7 @@ import {
     type_animalType,
     type_identificationNumber,
     type_race,
-    type_age,
+    type_birthdate,
     type_weight,
     type_imagenUrl,
     AnimalTypeEnum
@@ -26,7 +26,7 @@ export class Animal {
     race: type_race
 
     @Column({ type: "date" })
-    age: type_age
+    birthdate: type_birthdate
 
     @Column()
     weight: type_weight
