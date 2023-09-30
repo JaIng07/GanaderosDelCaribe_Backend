@@ -1,5 +1,6 @@
 import { DataSource } from "typeorm"
 import 'dotenv/config'
+import { Animal } from "../entities";
 
 const DB_TYPE = process.env.TYPEORM_CONNECTION as "mssql" | undefined;
 const DB_HOST = process.env.TYPEORM_HOST;
@@ -19,7 +20,7 @@ const AppDataSource = new DataSource({
   password: DB_PASSWORD,
   port: DB_PORT,
   database: DB_DATABASE,
-  entities: [],
+  entities: [Animal],
   synchronize: true,
 });
 
