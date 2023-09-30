@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 
+import AppDataSource from "../database/config";
 import animalRoutes from "../routes/animal.routes"
 
 class Server {
@@ -22,7 +23,13 @@ class Server {
   }
 
   async databaseInitialize() {
-    // aca se va a inicializar la base de datos
+    try{
+      await AppDataSource.initialize()
+      console.log("Base de datos inicializada correctamente!")
+    }catch(err){
+      console.error("ERROR AL MOMENTO DE INIZIALIZAR LA BASE DE DATOS")
+      console.error(err)
+    }
   }
 
   routes() {
