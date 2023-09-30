@@ -9,7 +9,7 @@ import {
     type_weight,
     type_imagenUrl,
     AnimalTypeEnum
-} from '../types/Animal.type'
+} from '../types/animal.type'
 
 @Entity()
 export class Animal {
