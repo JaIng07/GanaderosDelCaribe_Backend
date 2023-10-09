@@ -116,3 +116,43 @@ export const deleteAnimal = async (req: Request, res: Response) => {
   }
 
 }
+
+/**
+ * This function updates an animal in a database using the provided animal ID and request body data.
+ * @param {Request} req - The `req` parameter is an object that represents the HTTP request made to the
+ * server. It contains information such as the request headers, request body, request parameters, etc.
+ * @param {Response} res - The `res` parameter is the response object that is used to send the HTTP
+ * response back to the client. It contains methods and properties that allow you to set the response
+ * status, headers, and body. In this code snippet, it is used to send a JSON response with a status
+ * code and a
+ * @returns a JSON response. If the animal is successfully modified, it will return a 200 status code
+ * with a message indicating that the animal has been modified correctly. If there is an error, it will
+ * return a 400 status code with a message indicating that there was an error modifying the animal,
+ * along with the error object and the ID of the animal.
+ */
+export const putAnimal = async (req: Request, res: Response) => {
+  const idAnimal = req.params.id
+  const bodyData=req.body
+  //Se coloca el ID para que no pueda tomarse desde el back, en caso de que lo manden al front
+  const { animalType, id, ...rest} = bodyData
+
+  try {
+
+    const animalRepository = await AppDataSource.getRepository(Animal)
+    //La funcion valida directamente si existe
+    await animalRepository.update(idAnimal, rest)
+
+    return res.status(200).json({
+      message: "Se ha modificado correctamente el animal",
+    })
+
+  } catch (error) {
+    return res.status(400).json({
+      message: "Ha ocurrido un error al modificar el animal",
+      error: error,
+      id
+    })
+  }
+
+}
+

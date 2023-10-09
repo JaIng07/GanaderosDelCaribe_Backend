@@ -3,7 +3,7 @@ import { validateFields } from "../middlewares/validateFields";
 import { isValidDateFormat } from "../helpers/isValidDateFormat";
 import { identificationNumberExists } from "../helpers/dbValidators";
 
-import { type_identificationNumber } from "../types/animal.type";
+import { type_identificationNumber } from "../types/Animal.type";
 
 export const animalPostFieldValidators = [
   body('animalType', "El tipo de animal es requerido").notEmpty().isString(),
@@ -24,4 +24,19 @@ export const animalDeleteFieldValidators = [
   param('id', "El id del animal es requerido").notEmpty().isString(),
   param("id", "Deber se un id valido").isUUID(),
   validateFields
+]
+
+export const animalPutFieldValidators = [
+  param('idAnimal', "El id del animal es requerido").notEmpty().isString(),
+  param("idAnimal", "Deber se un id valido").isUUID(),
+  body('animalType', "El tipo de animal es requerido").optional().notEmpty().isString(),
+  body("animalType", "El tipo de animal no es valido").optional().if(body("animalType").exists()).isIn(["ganado"]),
+  body('identificationNumber', "El numero de identificacion del animal es requerido").optional().notEmpty().isNumeric(),
+  body('identificationNumber', "El numero de identificacion del animal ya existe").optional().custom((idNumber: type_identificationNumber) => identificationNumberExists(idNumber)),
+  body("race", "La raza del animal es requerida").optional().notEmpty().isString(),
+  body("birthdate", "La edad del animal no es valida").optional().custom((date:string) => isValidDateFormat(date)),
+  body("weight", "El peso del animal es requerido").optional().notEmpty().isNumeric(),
+  body("weight", "El peso del animal no es valido").optional().isFloat({ min: 0 }),
+  body("imagenUrl", "La imagen del animal es requerida").optional().notEmpty().isString(),
+  body("imagenUrl", "La imagen del animal no es valida").optional().if(body("imagenUrl").exists()).isURL(),
 ]

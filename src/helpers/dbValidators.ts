@@ -1,6 +1,6 @@
 import AppDataSource from "../database/config"
 import { Animal } from "../entities"
-import { type_identificationNumber } from "../types/animal.type"
+import { type_identificationNumber } from "../types/Animal.type"
 
 /**
  * La función verifica si un número de identificación existe en la tabla de 'animal' de la base de dato
