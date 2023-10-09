@@ -116,3 +116,36 @@ export const deleteAnimal = async (req: Request, res: Response) => {
   }
 
 }
+
+/*const animalToEdit = await animalRepository.findOneBy({ id: id })
+*
+*    if(!animalToEdit) {return res.status(400).json({
+*      message: "No se ha encontrado el animal a modificar"
+*    })}
+*/
+export const putAnimal = async (req: Request, res: Response) => {
+  const idAnimal = req.params.id
+  const bodyData=req.body
+  //Se coloca el ID para que no pueda tomarse desde el back, en caso de que lo manden al front
+  const { animalType, id, ...rest} = bodyData
+
+  try {
+
+    const animalRepository = await AppDataSource.getRepository(Animal)
+    //La funcion valida directamente si existe
+    await animalRepository.update(idAnimal, rest)
+
+    return res.status(200).json({
+      message: "Se ha modificado correctamente el animal",
+    })
+
+  } catch (error) {
+    return res.status(400).json({
+      message: "Ha ocurrido un error al modificar el animal",
+      error: error,
+      id
+    })
+  }
+
+}
+
