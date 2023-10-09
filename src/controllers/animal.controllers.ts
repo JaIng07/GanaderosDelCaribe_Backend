@@ -117,12 +117,6 @@ export const deleteAnimal = async (req: Request, res: Response) => {
 
 }
 
-/*const animalToEdit = await animalRepository.findOneBy({ id: id })
-*
-*    if(!animalToEdit) {return res.status(400).json({
-*      message: "No se ha encontrado el animal a modificar"
-*    })}
-*/
 export const putAnimal = async (req: Request, res: Response) => {
   const idAnimal = req.params.id
   const bodyData=req.body
