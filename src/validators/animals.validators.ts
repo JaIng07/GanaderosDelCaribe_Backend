@@ -39,4 +39,5 @@ export const animalPutFieldValidators = [
   body("weight", "El peso del animal no es valido").optional().isFloat({ min: 0 }),
   body("imagenUrl", "La imagen del animal es requerida").optional().notEmpty().isString(),
   body("imagenUrl", "La imagen del animal no es valida").optional().if(body("imagenUrl").exists()).isURL(),
+  validateFields
 ]
