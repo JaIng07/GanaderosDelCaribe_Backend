@@ -5,6 +5,13 @@ import { identificationNumberExists } from "../helpers/dbValidators";
 
 import { type_identificationNumber } from "../types/Animal.type";
 
+
+export const animalGetFieldValidators = [
+  param('id', "El id del animal es requerido").notEmpty().isString(),
+  param("id", "Deber se un id valido").isUUID(),
+  validateFields
+]
+
 export const animalPostFieldValidators = [
   body('animalType', "El tipo de animal es requerido").notEmpty().isString(),
   body("animalType", "El tipo de animal no es valido").if(body("animalType").exists()).isIn(["ganado"]),
@@ -39,4 +46,5 @@ export const animalPutFieldValidators = [
   body("weight", "El peso del animal no es valido").optional().isFloat({ min: 0 }),
   body("imagenUrl", "La imagen del animal es requerida").optional().notEmpty().isString(),
   body("imagenUrl", "La imagen del animal no es valida").optional().if(body("imagenUrl").exists()).isURL(),
+  validateFields
 ]

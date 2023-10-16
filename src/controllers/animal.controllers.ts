@@ -39,6 +39,42 @@ export const getAnimals = async (req: Request, res: Response) => {
 }
 
 /**
+ * Esta función recupera un animal de una fuente de datos según su ID y lo devuelve como una respuesta JSON.
+ * @param {Request} req - El parámetro `req` es un objeto que representa la solicitud HTTP realizada al
+ * servidor. Contiene información como el método de solicitud, encabezados, parámetros de consulta y cuerpo
+ * de la solicitud.
+ * @param {Response} res - El parámetro `res` es el objeto de respuesta que se utiliza para enviar la
+ * respuesta HTTP de vuelta al cliente. Contiene métodos y propiedades que te permiten establecer el estado
+ * de la respuesta, los encabezados y el cuerpo. En este fragmento de código, se utiliza para enviar una
+ * respuesta JSON con un código de estado de
+ * @returns una respuesta JSON con un código de estado de 200 si el animal se recupera correctamente, y un
+ * código de estado de 400 si hay un error. La respuesta incluye un mensaje que indica si el animal se
+ * obtuvo correctamente o si hubo un error, y los datos del animal si se obtuvieron correctamente. Si hay un
+ * error, la respuesta también incluye el objeto de error.
+ */
+export const getAnimal = async (req: Request, res: Response) => {
+
+  const id = req.params.id
+
+  try {
+
+    const response = await AppDataSource.getRepository(Animal).findOneBy({ id: id })
+
+    return res.status(200).json({
+      message: "Se han obtenido el animal correctamente",
+      animal: response
+    })
+
+  } catch (error) {
+    return res.status(400).json({
+      message: "Ha ocurrido un error al obtener los datos del animal",
+      error: error
+    })
+  }
+
+}
+
+/**
  * Esta función guarda un nuevo animal en una base de datos utilizando los datos proporcionados.
  * @param {Request} req - El parámetro `req` es un objeto que representa la solicitud HTTP hecha al
  * servidor. Contiene información como los encabezados de la solicitud, el cuerpo de la solicitud, el método de la solicitud,
@@ -118,17 +154,19 @@ export const deleteAnimal = async (req: Request, res: Response) => {
 }
 
 /**
- * This function updates an animal in a database using the provided animal ID and request body data.
- * @param {Request} req - The `req` parameter is an object that represents the HTTP request made to the
- * server. It contains information such as the request headers, request body, request parameters, etc.
- * @param {Response} res - The `res` parameter is the response object that is used to send the HTTP
- * response back to the client. It contains methods and properties that allow you to set the response
- * status, headers, and body. In this code snippet, it is used to send a JSON response with a status
- * code and a
- * @returns a JSON response. If the animal is successfully modified, it will return a 200 status code
- * with a message indicating that the animal has been modified correctly. If there is an error, it will
- * return a 400 status code with a message indicating that there was an error modifying the animal,
- * along with the error object and the ID of the animal.
+ * Esta función actualiza un animal en una base de datos utilizando el ID del animal proporcionado y los
+ * datos del cuerpo de la solicitud.
+ * @param {Request} req - El parámetro `req` es un objeto que representa la solicitud HTTP realizada al
+ * servidor. Contiene información como los encabezados de la solicitud, el cuerpo de la solicitud, los
+ * parámetros de la solicitud, etc.
+ * @param {Response} res - El parámetro `res` es el objeto de respuesta que se utiliza para enviar la
+ * respuesta HTTP de vuelta al cliente. Contiene métodos y propiedades que te permiten establecer el estado
+ * de la respuesta, los encabezados y el cuerpo. En este fragmento de código, se utiliza para enviar una
+ * respuesta JSON con un código de estado y un
+ * @returns una respuesta JSON. Si el animal se modifica correctamente, devolverá un código de estado 200
+ * con un mensaje indicando que el animal se ha modificado correctamente. Si hay un error, devolverá un
+ * código de estado 400 con un mensaje indicando que hubo un error al modificar el animal, junto con el
+ * objeto de error y el ID del animal.
  */
 export const putAnimal = async (req: Request, res: Response) => {
   const idAnimal = req.params.id
