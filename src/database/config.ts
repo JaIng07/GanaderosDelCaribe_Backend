@@ -9,8 +9,8 @@ const DB_USERNAME = process.env.TYPEORM_USERNAME;
 const DB_PASSWORD = process.env.TYPEORM_PASSWORD;
 const DB_DATABASE = process.env.TYPEORM_DATABASE;
 
-if (!DB_TYPE || !DB_HOST || !DB_PORT || !DB_USERNAME || !DB_PASSWORD || !DB_DATABASE) {
-  throw new Error("Una o más variables de entorno no están definidas");
+if (!DB_TYPE) {
+  throw new Error("TYPEORM_CONNECTION no definido");
 }
 
 const AppDataSource = new DataSource({

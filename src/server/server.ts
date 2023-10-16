@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import colors from "colors";
 
 import AppDataSource from "../database/config";
 import animalRoutes from "../routes/animal.routes"
@@ -25,9 +26,9 @@ class Server {
   async databaseInitialize() {
     try{
       await AppDataSource.initialize()
-      console.log("Base de datos inicializada correctamente!")
+      console.log(`${colors.green("[INFO]")} Base de datos inicializada correctamente!`)
     }catch(err){
-      console.error("ERROR AL MOMENTO DE INIZIALIZAR LA BASE DE DATOS")
+      console.error(`${colors.red("[ERROR]")} Error al inicializar la base de datos!`)
       console.error(err)
     }
   }
@@ -39,8 +40,8 @@ class Server {
 
   listen() {
     this.app.listen(this.port, () => {
-      console.log(`El servidor esta corriendo en el puerto: ${this.port}`)
-      console.log(`Si estas en local puede visitar: http://localhost:${this.port}`)
+      console.log(`${colors.green("[INFO]")} El servidor esta corriendo en el puerto: ${this.port}`)
+      console.log(`${colors.green("[INFO]")} Si estas en local puede visitar: http://localhost:${this.port}`)
     })
   }
 
