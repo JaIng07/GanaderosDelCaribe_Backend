@@ -34,12 +34,12 @@ export const animalDeleteFieldValidators = [
 ]
 
 export const animalPutFieldValidators = [
-  param('idAnimal', "El id del animal es requerido").notEmpty().isString(),
-  param("idAnimal", "Deber se un id valido").isUUID(),
+  param('id', "El id del animal es requerido").notEmpty().isString(),
+  param("id", "Deber se un id valido").isUUID(),
+  body('identificationNumber', "El numero de identificacion del animal es requerido").optional().notEmpty().isNumeric(),
+  body('identificationNumber', "El numero de identificacion del animal ya existe").optional().custom((idNumber: type_identificationNumber, {req}) => identificationNumberExists(idNumber, req?.params?.id)),
   body('animalType', "El tipo de animal es requerido").optional().notEmpty().isString(),
   body("animalType", "El tipo de animal no es valido").optional().if(body("animalType").exists()).isIn(["ganado"]),
-  body('identificationNumber', "El numero de identificacion del animal es requerido").optional().notEmpty().isNumeric(),
-  body('identificationNumber', "El numero de identificacion del animal ya existe").optional().custom((idNumber: type_identificationNumber) => identificationNumberExists(idNumber)),
   body("race", "La raza del animal es requerida").optional().notEmpty().isString(),
   body("birthdate", "La edad del animal no es valida").optional().custom((date:string) => isValidDateFormat(date)),
   body("weight", "El peso del animal es requerido").optional().notEmpty().isNumeric(),
