@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import colors from "colors";
-
 import AppDataSource from "../database/config";
 import { animalRoutes, userRoutes } from "../routes"
 
@@ -20,7 +19,10 @@ class Server {
   middlewares() {
     this.app.use(express.static("public"))
     this.app.use(express.json())
-    this.app.use(cors())
+    this.app.use(cors({
+      origin: 'http://localhost:5173',
+      optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+    }))
   }
 
   async databaseInitialize() {
