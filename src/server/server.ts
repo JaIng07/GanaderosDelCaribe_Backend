@@ -3,7 +3,7 @@ import cors from "cors";
 import colors from "colors";
 
 import AppDataSource from "../database/config";
-import animalRoutes from "../routes/animal.routes"
+import { animalRoutes, userRoutes } from "../routes"
 
 class Server {
   port: string | undefined
@@ -36,6 +36,7 @@ class Server {
   routes() {
     // aca se van a definir las rutas
     this.app.use('/api/animal', animalRoutes)
+    this.app.use("/api/user", userRoutes)
   }
 
   listen() {

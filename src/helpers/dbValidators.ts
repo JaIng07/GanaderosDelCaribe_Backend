@@ -1,5 +1,5 @@
 import AppDataSource from "../database/config"
-import { Animal } from "../entities"
+import { Animal, User } from "../entities"
 import { type_identificationNumber } from "../types/Animal.type"
 
 /**
@@ -10,11 +10,19 @@ import { type_identificationNumber } from "../types/Animal.type"
  * animal.
  */
 export const identificationNumberExists = async( identificationNumber: type_identificationNumber ) => {
-
   const animal = AppDataSource.getRepository(Animal)
-
   const idNumberExists = await animal.findOneBy({ identificationNumber: identificationNumber })
-
   if(idNumberExists) throw new Error('El numero de identificacion ya existe')
+}
 
+export const emailExists = async( email: string ) => {
+  const user = AppDataSource.getRepository(User)
+  const idNumberExists = await user.findOneBy({ email: email })
+  if(idNumberExists) throw new Error('El email ya existe')
+}
+
+export const identificationCardExists = async( identificationCard: number ) => {
+  const user = AppDataSource.getRepository(User)
+  const idNumberExists = await user.findOneBy({ identificationCard: identificationCard })
+  if(idNumberExists) throw new Error('La cedula ya existe')
 }
