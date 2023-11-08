@@ -29,13 +29,13 @@ export const postUser = (req: Request, res: Response) => {
 
   try{
 
-    const { username, email, password, role, identificationCard} = req.body
+    const { username, email, password, rol, identificationCard} = req.body
 
     const user = new User()
     user.username = username
     user.password = password
     user.email = email
-    user.rol = role
+    user.rol = rol
     user.identificationCard = identificationCard
     AppDataSource.manager.save(user)
 
@@ -60,9 +60,6 @@ export const putUser = async (req: Request, res: Response) => {
 
     const { idUser } = req.params
     const { id, ...rest} = req.body
-    console.log({id})
-    console.log({idUser})
-    console.log({rest})
 
     const userRepository = AppDataSource.getRepository(User)
     await userRepository.update(idUser, rest)

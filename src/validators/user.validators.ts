@@ -10,8 +10,8 @@ export const userPostFieldValidators = [
 
   body('password', "La contraseña es obligatoria").notEmpty(),
 
-  body('role', "El rol es obligatorio").notEmpty(),
-  body('role', "El rol debe ser admin o employee").isIn(['admin', 'employee']),
+  body('rol', "El rol es obligatorio").notEmpty(),
+  body('rol', "El rol debe ser admin o employee").isIn(['admin', 'employee']),
 
   body('identificationCard', "La cédula es obligatoria").notEmpty(),
   body('identificationCard', "La cédula debe ser un número").isNumeric(),
@@ -35,8 +35,8 @@ export const userPutFieldValidators = [
   body('email', "El email no es un email valido").optional().isEmail(),
   body('email', "El email ya existe").optional().custom((email, {req}) => emailExists(email, req.params?.idUser)),
 
-  body('role', "El rol no puede estar vacio").optional().notEmpty(),
-  body('role', "El rol debe ser admin o employee").optional().isIn(['admin', 'employee']),
+  body('rol', "El rol no puede estar vacio").optional().notEmpty(),
+  body('rol', "El rol debe ser admin o employee").optional().isIn(['admin', 'employee']),
 
   body('identificationCard', "La cédula no puede estar vacia").optional().notEmpty(),
   body('identificationCard', "La cédula debe ser un número").optional().isNumeric(),
