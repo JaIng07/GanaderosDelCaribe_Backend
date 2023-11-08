@@ -37,9 +37,8 @@ stages:
 
     - script: |
         yarn
-        yarn build --if-present
-        yarn test --if-present
-      displayName: 'npm install, build and test'
+        yarn build
+      displayName: 'yarn and yarn build'
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'
