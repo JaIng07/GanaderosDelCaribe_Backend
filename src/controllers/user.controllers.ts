@@ -60,8 +60,11 @@ export const putUser = async (req: Request, res: Response) => {
 
     const { idUser } = req.params
     const { id, ...rest} = req.body
+    console.log({id})
+    console.log({idUser})
+    console.log({rest})
 
-    const userRepository = await AppDataSource.getRepository(User)
+    const userRepository = AppDataSource.getRepository(User)
     await userRepository.update(idUser, rest)
 
     return res.status(200).json({
