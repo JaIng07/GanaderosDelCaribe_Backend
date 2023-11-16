@@ -5,7 +5,7 @@ import { parseActivity } from "../helpers/parseActivity"
 
 export const getActivities = async (req: Request, res: Response) => {
 
-  const { idUser } = req.body
+  const { idUser } = req.params
 
   try {
 
@@ -26,7 +26,7 @@ export const getActivities = async (req: Request, res: Response) => {
 
     return res.status(200).json({
       message: "Se han obtenido las actividades correctamente",
-      Activity: parseActivity(activity),
+      activity: parseActivity(activity),
     })
 
   } catch (error) {

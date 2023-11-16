@@ -4,7 +4,7 @@ import { activityGetFieldValidators, activityPostFieldValidators } from "../vali
 
 const router = Router()
 
-router.get('/', activityGetFieldValidators, getActivities)
+router.get('/:idUser', activityGetFieldValidators, getActivities)
 router.post('/',  activityPostFieldValidators, postActivity)
 
 export default router;

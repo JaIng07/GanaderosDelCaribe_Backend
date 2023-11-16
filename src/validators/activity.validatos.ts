@@ -1,4 +1,4 @@
-import { body } from "express-validator";
+import { body, param } from "express-validator";
 import { validateFields } from "../middlewares/validateFields";
 import { validateJWT } from "../middlewares/validateJWT";
 
@@ -6,7 +6,7 @@ export const animalsGetFieldValidators = [validateJWT]
 
 export const activityGetFieldValidators = [
   validateJWT,
-  body('idUser', "El id del usuario es requerido").notEmpty().isString(),
+  param('idUser', "El id del usuario es requerido").notEmpty().isString(),
   validateFields
 ]
 
