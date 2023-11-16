@@ -2,6 +2,7 @@ interface Activity {
   id: string;
   title: string;
   description: string;
+  date: string;
   column: 'todo' | 'inProgress' | 'done';
 }
 
@@ -11,6 +12,7 @@ interface StatusColumn {
     id: string;
     title: string;
     description: string;
+    date: string
   }[];
 }
 
@@ -37,12 +39,13 @@ export function parseActivity(activity: Activity[] | any): Status {
     }
   };
 
-  activity.forEach((activity: { id: string; title: string; description: string; column: string; }) => {
+  activity.forEach((activity: Activity) => {
 
     const item = {
       id: activity.id,
       title: activity.title,
-      description: activity.description
+      description: activity.description,
+      date: activity.date
     };
 
     if(activity.column === 'todo') {
