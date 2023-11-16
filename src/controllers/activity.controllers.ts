@@ -25,6 +25,7 @@ export const getActivities = async (req: Request, res: Response) => {
     }
 
     return res.status(200).json({
+      cantActivity: activity.length,
       message: "Se han obtenido las actividades correctamente",
       activity: parseActivity(activity),
     })
@@ -59,6 +60,25 @@ export const postActivity = async (req: Request, res: Response) => {
 
   return res.status(200).json({
     message: "Se ha creado la actividad correctamente",
+    Activity: activity,
+  })
+
+}
+
+export const changeColumnActivity = async (req: Request, res: Response) => {
+
+  const { idActivity, column } = req.body
+
+  const activity = await AppDataSource.getRepository(Activity).update(idActivity, { column })
+
+  if (!activity) {
+    return res.status(404).json({
+      message: "No se ha podido actualizar la actividad"
+    });
+  }
+
+  return res.status(200).json({
+    message: "Se ha actualizado la actividad correctamente",
     Activity: activity,
   })
 

@@ -1,10 +1,11 @@
 import { Router } from "express";
-import { getActivities, postActivity } from "../controllers/activity.controllers";
-import { activityGetFieldValidators, activityPostFieldValidators } from "../validators/activity.validatos";
+import { getActivities, postActivity, changeColumnActivity } from "../controllers/activity.controllers";
+import { activityGetValidators, activityPostValidators, changeColumnPostValidators } from "../validators/activity.validatos";
 
 const router = Router()
 
-router.get('/:idUser', activityGetFieldValidators, getActivities)
-router.post('/',  activityPostFieldValidators, postActivity)
+router.get('/:idUser', activityGetValidators, getActivities)
+router.post('/',  activityPostValidators, postActivity)
+router.post('/update',  changeColumnPostValidators, changeColumnActivity)
 
 export default router;
