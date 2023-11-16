@@ -65,7 +65,7 @@ export const putUser = async (req: Request, res: Response) => {
     await userRepository.update(idUser, rest)
 
     return res.status(200).json({
-      message: "Se ha modificado correctamente el animal",
+      message: "Se ha modificado correctamente el usuario",
     })
 
   }catch(error){
