@@ -2,17 +2,20 @@ import { body, param } from "express-validator";
 import { validateFields } from "../middlewares/validateFields";
 import { isValidDateFormat } from "../helpers/isValidDateFormat";
 import { identificationNumberExists } from "../helpers/dbValidators";
-
 import { type_identificationNumber } from "../types/Animal.type";
+import { validateJWT } from "../middlewares/validateJWT";
 
+export const animalsGetFieldValidators = [validateJWT]
 
 export const animalGetFieldValidators = [
+  validateJWT,
   param('id', "El id del animal es requerido").notEmpty().isString(),
   param("id", "Deber se un id valido").isUUID(),
   validateFields
 ]
 
 export const animalPostFieldValidators = [
+  validateJWT,
   body('animalType', "El tipo de animal es requerido").notEmpty().isString(),
   body("animalType", "El tipo de animal no es valido").if(body("animalType").exists()).isIn(["ganado"]),
   body('identificationNumber', "El numero de identificacion del animal es requerido").notEmpty().isNumeric(),
@@ -28,12 +31,14 @@ export const animalPostFieldValidators = [
 ]
 
 export const animalDeleteFieldValidators = [
+  validateJWT,
   param('id', "El id del animal es requerido").notEmpty().isString(),
   param("id", "Deber se un id valido").isUUID(),
   validateFields
 ]
 
 export const animalPutFieldValidators = [
+  validateJWT,
   param('id', "El id del animal es requerido").notEmpty().isString(),
   param("id", "Deber se un id valido").isUUID(),
   body('identificationNumber', "El numero de identificacion del animal es requerido").optional().notEmpty().isNumeric(),

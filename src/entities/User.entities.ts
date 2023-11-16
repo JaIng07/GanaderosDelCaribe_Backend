@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
 import { v4 as uuidv4 } from "uuid";
 import { user_id, user_email, user_password, UserRolEnum, user_rol, user_username, user_identificationCard } from '../types/User.type'
+import Activity from "./Activity.entities";
 
 @Entity()
 export class User {
@@ -21,6 +22,9 @@ export class User {
 
 	@Column({ type: "integer", unique: true})
 	identificationCard: user_identificationCard
+
+	@OneToMany(() => Activity, (activity) => activity.user)
+	activity: Activity[]
 
 	constructor() {
         if (!this.id) {
