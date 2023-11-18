@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { getActivities, postActivity, changeColumnActivity } from "../controllers/activity.controllers";
-import { activityGetValidators, activityPostValidators, changeColumnPostValidators } from "../validators/activity.validatos";
+import { activityGetValidators, activityPostValidators, changeColumnPostValidators } from "../validators/activity.validators";
 
 const router = Router()
 
