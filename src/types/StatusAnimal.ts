@@ -1,0 +1,1 @@
+export enum StatusEnum {Healthy="healthy", Sick="sick", Critical="critical"}
