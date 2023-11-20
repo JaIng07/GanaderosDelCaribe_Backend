@@ -6,7 +6,7 @@ const router=Router()
 
 router.get('/', statusAnimalGetFieldValidator, getStatus)
 router.post('/', statusAnimalPostFieldValidators, postStatus)
-router.put('/', statusAnimalPutFieldValidators, putStatus)
-router.delete('/', statusAnimalDeleteFieldValidators, deleteStatus)
+router.put('/:idStatus', statusAnimalPutFieldValidators, putStatus)
+router.delete('/:idStatus', statusAnimalDeleteFieldValidators, deleteStatus)
 
 export default router;

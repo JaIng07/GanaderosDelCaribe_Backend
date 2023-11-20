@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, OneToOne } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne } from "typeorm"
 import { v4 as uuidv4 } from "uuid";
 import Animal from "./Animal.entities";
 import { StatusEnum } from "../types/StatusAnimal";
@@ -14,8 +14,8 @@ export class StatusAnimal {
     @Column()
     description: string
 
-    @Column({ type: "date" })
-    date: Date
+    @Column()
+    date: string
 
     constructor() {
         if (!this.id) {
@@ -23,8 +23,7 @@ export class StatusAnimal {
         }
     }
 
-    @OneToOne(() => Animal)
-    @JoinColumn()
+    @ManyToOne(() => Animal, (animal) => animal.statuses)
     animal: Animal
 
 }
