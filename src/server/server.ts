@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import colors from "colors";
 import AppDataSource from "../database/config";
-import { animalRoutes, userRoutes, authRoutes, activityRoutes, inventoryRoutes, ecommerceRoutes, statusAnimalRoutes } from "../routes"
+import { animalRoutes, userRoutes, authRoutes, activityRoutes, inventoryRoutes, statusAnimalRoutes, ecommerceRoutes } from "../routes"
 
 class Server {
   port: string | undefined
