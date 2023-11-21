@@ -19,7 +19,7 @@ export const authenticate = async (req: Request, res: Response) => {
 
     if (!user) return res.status(400).json(error)
 
-    const token = await generateJWT(user.id, user.rol);
+    const token = await generateJWT(user.id, user.rol, user.username);
 
     res.status(200).json({
       ok: true,
