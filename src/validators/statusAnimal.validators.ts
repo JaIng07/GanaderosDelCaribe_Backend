@@ -17,6 +17,7 @@ export const statusAnimalPostFieldValidators = [
 
 export const statusAnimalPutFieldValidators = [
     validateJWT,
+    param('idStatus', "El id del estado es requerido").notEmpty().isString(),
     body('status', "El status es obligatorio").notEmpty(),
     body('status', "El status debe ser healthy, sick o critical").isIn(['healthy', 'sick', 'critical']),
     body("description", "La descripción del estado es requerida").notEmpty().isString(),
@@ -25,7 +26,6 @@ export const statusAnimalPutFieldValidators = [
 
 export const statusAnimalDeleteFieldValidators = [
     validateJWT,
-    param('id', "El id del estado es requerido").notEmpty().isString(),
-    param("id", "Deber se un id valido").isUUID(),
+    param('idStatus', "El id del estado es requerido").notEmpty().isString(),
     validateFields
 ]

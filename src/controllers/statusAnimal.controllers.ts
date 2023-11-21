@@ -52,10 +52,10 @@ export const putStatus = async (req: Request, res: Response) => {
         try {
 
             const { idStatus } = req.params
-            const { status, ...rest } = req.body
+            const { status, description} = req.body
 
             const userRepository = AppDataSource.getRepository(StatusAnimal)
-            await userRepository.update(idStatus, rest)
+            await userRepository.update(idStatus, {status, description})
 
             res.json({
                 ok: true,
@@ -77,7 +77,7 @@ export const putStatus = async (req: Request, res: Response) => {
 
         try {
 
-            const statusRepository = await AppDataSource.getRepository(StatusAnimal)
+            const statusRepository = AppDataSource.getRepository(StatusAnimal)
             const statusToRemove = await statusRepository.findOneBy({ id: idStatus })
 
             if (statusToRemove) await statusRepository.remove(statusToRemove)
