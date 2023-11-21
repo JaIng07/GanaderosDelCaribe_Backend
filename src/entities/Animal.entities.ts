@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
 import { v4 as uuidv4 } from "uuid";
 import {
     type_id,
@@ -10,6 +10,7 @@ import {
     type_imagenUrl,
     AnimalTypeEnum
 } from '../types/Animal.type'
+import StatusAnimal from "./StatusAnimal.entities";
 
 @Entity()
 export class Animal {
@@ -39,6 +40,9 @@ export class Animal {
             this.id = uuidv4();
         }
     }
+
+    @OneToMany(() => StatusAnimal, (status) => status.animal)
+    statuses: StatusAnimal[]
 
 }
 
