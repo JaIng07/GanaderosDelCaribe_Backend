@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import colors from "colors";
 import AppDataSource from "../database/config";
-import { animalRoutes, userRoutes, authRoutes, activityRoutes } from "../routes"
+import { animalRoutes, userRoutes, authRoutes, activityRoutes, inventoryRoutes, statusAnimalRoutes, ecommerceRoutes } from "../routes"
 
 class Server {
   port: string | undefined
@@ -38,7 +38,9 @@ class Server {
     this.app.use("/api/user", userRoutes)
     this.app.use("/api/auth", authRoutes)
     this.app.use("/api/activity", activityRoutes)
-
+    this.app.use("/api/inventory", inventoryRoutes)
+    this.app.use("/api/ecommerce", ecommerceRoutes)
+    this.app.use("/api/statusAnimal", statusAnimalRoutes)
   }
 
   listen() {

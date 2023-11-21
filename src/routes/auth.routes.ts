@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { authenticate } from '../controllers/authenticate.controllers'
-import { authenticateFieldValidators } from "../validators/authenticate.validatos";
+import { authenticateFieldValidators } from "../validators/authenticate.validators";
 
 const router = Router()
 

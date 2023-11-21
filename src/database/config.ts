@@ -2,6 +2,9 @@ import { DataSource } from "typeorm"
 import 'dotenv/config'
 import { Animal, User } from "../entities";
 import Activity from "../entities/Activity.entities";
+import Inventory from "../entities/Inventory.entities";
+import Ecommerce from "../entities/Ecommerce.entities";
+import StatusAnimal from "../entities/StatusAnimal.entities";
 
 const DB_TYPE = process.env.TYPEORM_CONNECTION as "mssql" | undefined;
 const DB_HOST = process.env.TYPEORM_HOST;
@@ -21,7 +24,7 @@ const AppDataSource = new DataSource({
   password: DB_PASSWORD,
   port: DB_PORT,
   database: DB_DATABASE,
-  entities: [Animal, User, Activity],
+  entities: [Animal, User, Activity, Inventory, Ecommerce, StatusAnimal],
   synchronize: true,
 });
 
